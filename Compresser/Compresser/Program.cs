@@ -5,8 +5,16 @@ using System.IO.Compression;
 
 namespace Compresser
 {
+    /// <summary>
+    /// This is a compress/decompress console application.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Compresses the file.
+        /// </summary>
+        /// <param name="FileToCompress">The file to compress.</param>
+        /// <param name="CompressedFile">The compressed file.</param>
         static void CompressFile(String FileToCompress, String CompressedFile)
         {
             using(FileStream InputStream = new FileStream( FileToCompress, FileMode.OpenOrCreate, FileAccess.ReadWrite ))
@@ -21,6 +29,10 @@ namespace Compresser
             }
         }
 
+        /// <summary>
+        /// The Decompress method.
+        /// </summary>
+        /// <param name="CompressedFile">The compressed file.</param>
         static void DeCompressFile(String CompressedFile)
         {
             String UnCompressedFile = CompressedFile.Substring(0, CompressedFile.Length-5);
@@ -36,6 +48,10 @@ namespace Compresser
             }
         }
 
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         static void Main(string[] args)
         {
 
@@ -76,7 +92,7 @@ namespace Compresser
                         OperationTimer.Stop();
                         Console.WriteLine("The compressing took " + OperationTimer.ElapsedMilliseconds + " milliseconds");
                         Console.WriteLine();
-                        Console.WriteLine("File is compressed");
+                        Console.WriteLine("File is compressed, the compressed file can be found in the same directory as the original file.");
                         Console.WriteLine();
                         Console.WriteLine();
                         break;
@@ -88,7 +104,7 @@ namespace Compresser
                         OperationTimer.Stop();
                         Console.WriteLine("The decompressing took " + OperationTimer.ElapsedMilliseconds + " milliseconds");
                         Console.WriteLine();
-                        Console.WriteLine("File is decompressed");
+                        Console.WriteLine("File is decompressed, the decompressed file can be found in the same directory as the compressed file.");
                         Console.WriteLine();
                         Console.WriteLine();
                         break;
