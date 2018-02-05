@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 
@@ -37,21 +38,63 @@ namespace Compresser
 
         static void Main(string[] args)
         {
-            //int programState = 0;
-            //while(programState != 3)
-            //{
-            //    Console.WriteLine("Enter 1 for compressing");
-            //    Console.WriteLine("Enter 2 for decompressing");
-            //    Console.WriteLine("Enter 3 for exiting the program");
-            //    Console.Write("Enter a number: ");
-            //    programState = Convert.ToInt32(Console.ReadLine());
-            //}
-            String a = "C:\\Users\\Andy\\Desktop\\test.txt";
-            String b = a + ".gzip";
-            //CompressFile(a, b);
-            DeCompressFile(b);
-            //Console.WriteLine(b.Substring(0, b.Length - 5));
-            //Console.ReadLine();
+
+            Console.WriteLine("  _____");
+            Console.WriteLine(" / ____|");
+            Console.WriteLine("| |     ___  _ __ ___  _ __  _ __ ___  ___ ___  ___  _ __");
+            Console.WriteLine("| |    / _ \\| '_ ` _ \\| '_ \\| '__/ _ \\/ __/ __|/ _ \\| '__|");
+            Console.WriteLine("| |___| (_) | | | | | | |_) | | |  __/\\__ \\__ \\ (_) | |");
+            Console.WriteLine(" \\_____\\___/|_| |_| |_| .__/|_|  \\___||___/___/\\___/|_|");
+            Console.WriteLine("                      | |");
+            Console.WriteLine("                      |_|");
+
+            Console.WriteLine();
+
+            Stopwatch OperationTimer = new Stopwatch();
+            int programState = 0;
+            while(programState != 3)
+            {
+                OperationTimer.Reset();
+                String FilePath = "";
+                String CompressedFilePath = "";
+                Console.WriteLine("Enter 1 for compressing");
+                Console.WriteLine("Enter 2 for decompressing");
+                Console.WriteLine("Enter 3 for exiting the program");
+                Console.Write("Select an action: ");
+                programState = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+                Console.WriteLine();
+
+                switch (programState)
+                {
+                    case 1:
+                        Console.Write("Enter the file path (this can be done by dragging the file into the console): ");
+                        FilePath = Console.ReadLine();
+                        CompressedFilePath = FilePath + ".gzip";
+                        OperationTimer.Start();
+                        CompressFile(FilePath, CompressedFilePath);
+                        OperationTimer.Stop();
+                        Console.WriteLine("The compressing took " + OperationTimer.ElapsedMilliseconds + " milliseconds");
+                        Console.WriteLine();
+                        Console.WriteLine("File is compressed");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+                    case 2:
+                        Console.Write("Enter the file path (this can be done by dragging the file into the console): ");
+                        CompressedFilePath = Console.ReadLine();
+                        OperationTimer.Start();
+                        DeCompressFile(CompressedFilePath);
+                        OperationTimer.Stop();
+                        Console.WriteLine("The decompressing took " + OperationTimer.ElapsedMilliseconds + " milliseconds");
+                        Console.WriteLine();
+                        Console.WriteLine("File is decompressed");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+
+                } 
+            }
         }
     }
 }
